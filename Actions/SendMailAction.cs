@@ -1,6 +1,6 @@
-﻿using FillInApp.Interfaces;
-using System.Net;
-using System.Net.Mail;
+﻿using FillInApp.GUI;
+using FillInApp.Helpers;
+using FillInApp.Interfaces;
 using System.Windows.Forms;
 
 namespace FillInApp.Actions
@@ -10,7 +10,7 @@ namespace FillInApp.Actions
     /// </summary>
     public class SendMailAction : IUserAction
     {
-        public async void Execute(IOfficeWrapper wrapper)
+        public void Execute(IOfficeWrapper wrapper)
         {
             if (string.IsNullOrEmpty(wrapper.DocumentFilePath))
             {
@@ -18,18 +18,17 @@ namespace FillInApp.Actions
                 return;
             }
 
-            // здесь должна быть формочка ввода почты, с проверкой желательно
+            var mailTo = string.Empty;
+            using (var frmMailTo = new MailToForm())
+            {
+                frmMailTo.ShowDialog();
+                if (frmMailTo.ShowDialog() != DialogResult.OK)
+                    return;
 
-            MailAddress from = new MailAddress("totoroanigiri@yandex.ru", "FillInApp");
-            MailAddress to = new MailAddress("glukchek@gmail.com");
-            MailMessage m = new MailMessage(from, to);
-            m.Attachments.Add(new Attachment(wrapper.DocumentFilePath));
-            m.Subject = "Зполненный документ";
-            m.Body = "Приложение FillInApp сформировало и прислало заполненный по шаблону документ на Вашу почту";
-            SmtpClient smtp = new SmtpClient("smtp.yandex.ru", 587);
-            smtp.Credentials = new NetworkCredential("totoroanigiri@yandex.ru", "blmoutyolcmvffbb");
-            smtp.EnableSsl = true;
-            await smtp.SendMailAsync(m);
+                mailTo = frmMailTo.GetMailTo();
+            }
+
+            MailHelper.Send(mailTo, wrapper.DocumentFilePath);
             MessageBox.Show("Письмо было отправлено");
         }
     }
