@@ -39,7 +39,7 @@
             this.fillInWordButton.TabIndex = 0;
             this.fillInWordButton.Text = "Заполнить Word шаблон";
             this.fillInWordButton.UseVisualStyleBackColor = true;
-            this.fillInWordButton.Click += new System.EventHandler(this.fillInWordButton_Click);
+            this.fillInWordButton.Click += new System.EventHandler(this.FillInWordButton_Click);
             // 
             // MainForm
             // 

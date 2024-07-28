@@ -13,7 +13,9 @@ namespace FillInApp.Actions
         public void Execute(IOfficeWrapper wrapper)
         {
             // выбор файла
-            var filePath = FileHelper.GetFilePath();
+            var filePath = FileHelper.GetPatternFilePath();
+            if (filePath == null)
+                return;
 
             var doc = WordOfficeHelper.Application.Documents.Add(filePath);
 
@@ -23,13 +25,13 @@ namespace FillInApp.Actions
             foreach (Word.Bookmark bookMark in doc.Bookmarks)
             {
                 bookMarkNames.Add(bookMark.Name);
-                defaultChanges[bookMark.Name] = "";
+                defaultChanges[bookMark.Name] = string.Empty;
             }
             doc.Close();
 
             wrapper.BookmarksNames = bookMarkNames;
             wrapper.Changes = defaultChanges;
-            wrapper.FilePath = filePath;
+            wrapper.PatternFilePath = filePath;
         }
     }
 }

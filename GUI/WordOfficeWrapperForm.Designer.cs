@@ -45,14 +45,14 @@
             this.buttonPanel.Location = new System.Drawing.Point(0, 421);
             this.buttonPanel.Name = "buttonPanel";
             this.buttonPanel.Size = new System.Drawing.Size(800, 29);
-            this.buttonPanel.TabIndex = 1;
+            this.buttonPanel.TabIndex = 4;
             // 
             // uploadButton
             // 
             this.uploadButton.Location = new System.Drawing.Point(160, 3);
             this.uploadButton.Name = "uploadButton";
             this.uploadButton.Size = new System.Drawing.Size(150, 23);
-            this.uploadButton.TabIndex = 2;
+            this.uploadButton.TabIndex = 1;
             this.uploadButton.Text = "Сохранить документ";
             this.uploadButton.UseVisualStyleBackColor = true;
             this.uploadButton.Click += new System.EventHandler(this.UploadButton_Click);
@@ -62,9 +62,10 @@
             this.SendMailButton.Location = new System.Drawing.Point(316, 3);
             this.SendMailButton.Name = "SendMailButton";
             this.SendMailButton.Size = new System.Drawing.Size(150, 23);
-            this.SendMailButton.TabIndex = 1;
+            this.SendMailButton.TabIndex = 2;
             this.SendMailButton.Text = "Отправить на почту";
             this.SendMailButton.UseVisualStyleBackColor = true;
+            this.SendMailButton.Click += new System.EventHandler(this.SendMailButton_Click);
             // 
             // downloadButton
             // 
@@ -86,7 +87,7 @@
             this.bookmarksTable.Location = new System.Drawing.Point(0, 0);
             this.bookmarksTable.Name = "bookmarksTable";
             this.bookmarksTable.Size = new System.Drawing.Size(800, 421);
-            this.bookmarksTable.TabIndex = 2;
+            this.bookmarksTable.TabIndex = 5;
             this.bookmarksTable.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.BookmarksTable_ControlRemoved);
             // 
             // WordOfficeWrapperForm

@@ -12,6 +12,7 @@ namespace FillInApp
         private readonly IOfficeWrapper _wrapper;
         private readonly IUserAction _downloadAction;
         private readonly IUserAction _uploadAction;
+        private readonly IUserAction _sendMailAction;
 
         public WordOfficeWrapperForm()
         {
@@ -19,6 +20,7 @@ namespace FillInApp
             _wrapper = new WordOfficeWrapper();
             _downloadAction = new DownloadAction();
             _uploadAction = new UploadAction();
+            _sendMailAction = new SendMailAction();
         }
 
         private void InitBookmarksTable()
@@ -54,9 +56,9 @@ namespace FillInApp
             InitBookmarksTable();
         }
 
-        private void SaveChangesButton_Click(object sender, EventArgs e)
+        private void SendMailButton_Click(object sender, EventArgs e)
         {
-
+            _sendMailAction.Execute(_wrapper);
         }
 
         private void UploadButton_Click(object sender, EventArgs e)
@@ -66,7 +68,7 @@ namespace FillInApp
 
         private void WordOfficeWrapperForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            WordOfficeHelper.ResetCache();
+            WordOfficeHelper.ResetWordApplication();
         }
 
         private void TextEdit_TextChanged(object sender, EventArgs e)

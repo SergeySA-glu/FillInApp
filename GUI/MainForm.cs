@@ -10,22 +10,10 @@ namespace FillInApp.GUI
             InitializeComponent();
         }
 
-        private void fillInWordButton_Click(object sender, EventArgs e)
+        private void FillInWordButton_Click(object sender, EventArgs e)
         {
             using (var frm = new WordOfficeWrapperForm())
                 frm.ShowDialog();
-
-            //Form frm = null;
-            //try
-            //{
-            //    frm = new WordOfficeWrapperForm();
-            //    frm.ShowDialog();
-            //}
-            //finally
-            //{
-            //    frm?.Dispose();
-            //    WordOfficeHelper.ResetCache();
-            //}
         }
     }
 }

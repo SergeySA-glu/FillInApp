@@ -9,7 +9,10 @@ namespace FillInApp
 
         public IDictionary<string, string> Changes { get; set; }
 
-        public string FilePath { get; set; }
+        public string PatternFilePath { get; set; }
+        public string DocumentFilePath { get; set; }
 
+        private string[] _extensions = new[] { "doc", "docx" };
+        public string[] Extensions => _extensions;
     }
 }

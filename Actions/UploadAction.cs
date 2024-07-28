@@ -2,7 +2,6 @@
 using FillInApp.Interfaces;
 using Microsoft.Office.Interop.Word;
 using System.IO;
-using System.Windows.Forms;
 
 namespace FillInApp.Actions
 {
@@ -10,27 +9,31 @@ namespace FillInApp.Actions
     {
         public void Execute(IOfficeWrapper wrapper)
         {
-            var doc = WordOfficeHelper.Application.Documents.Add(wrapper.FilePath);
-
-            foreach (Bookmark bookmark in doc.Bookmarks)
+            var filePath = string.Empty;
+            try
             {
-                if (wrapper.Changes.TryGetValue(bookmark.Name, out string newText))
-                    bookmark.Range.Text = newText;
-            }
-
-            using (var fileDialog = new SaveFileDialog())
-            {
-                fileDialog.InitialDirectory = Path.GetDirectoryName(wrapper.FilePath);
-                fileDialog.Filter = "Файлы шаблонов (*.doc)|*.doc| Файлы шаблонов (*.docx)|*.docx";
-                fileDialog.AddExtension = true;
-                fileDialog.FileName = "Заполненный документ";
-
-                if (fileDialog.ShowDialog() != DialogResult.OK)
+                filePath = FileHelper.GetDocumentFilePath(wrapper);
+                if (filePath == null)
                     return;
 
-                var filename = fileDialog.FileName;
-                doc.SaveAs2(FileName: filename);
+                var doc = WordOfficeHelper.Application.Documents.Add(wrapper.PatternFilePath);
+
+                foreach (Bookmark bookmark in doc.Bookmarks)
+                {
+                    if (wrapper.Changes.TryGetValue(bookmark.Name, out string newText))
+                        bookmark.Range.Text = newText;
+                }
+
+                doc.SaveAs2(FileName: filePath);
                 doc.Close();
+
+                wrapper.DocumentFilePath = filePath;
+            }
+            catch
+            {
+                if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
+                    File.Delete(filePath);
+                throw;
             }
         }
     }

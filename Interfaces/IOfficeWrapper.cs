@@ -8,6 +8,12 @@ namespace FillInApp.Interfaces
 
         IDictionary<string, string> Changes { get; set; }
 
-        string FilePath { get; set; }
+        string PatternFilePath { get; set; }
+
+        string DocumentFilePath { get; set; }
+
+        string[] Extensions { get; }
+
+
     }
 }
