@@ -1,6 +1,7 @@
 ﻿using FillInApp.Actions;
 using FillInApp.Helpers;
 using FillInApp.Interfaces;
+using FillInApp.Logger;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,6 +10,7 @@ namespace FillInApp
 {
     public partial class WordOfficeWrapperForm : Form
     {
+        private readonly ILogger _logger;
         private readonly IOfficeWrapper _wrapper;
         private readonly IUserAction _downloadAction;
         private readonly IUserAction _uploadAction;
@@ -17,6 +19,7 @@ namespace FillInApp
         public WordOfficeWrapperForm()
         {
             InitializeComponent();
+            _logger = LogManager.GetLogger();
             _wrapper = new WordOfficeWrapper();
             _downloadAction = new DownloadAction();
             _uploadAction = new UploadAction();
@@ -52,18 +55,49 @@ namespace FillInApp
 
         private void DownloadButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                _logger.LogInfo("Загрузка документа запущена");
             _downloadAction.Execute(_wrapper);
+                _logger.LogInfo("Обновление формы");
             InitBookmarksTable();
+                _logger.LogInfo("Загрузка документа проведена успешно");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void SendMailButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                _logger.LogInfo("Отправка на почту запущена");
             _sendMailAction.Execute(_wrapper);
+                _logger.LogInfo("Отправка на почту проведена успешно");
+        }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void UploadButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                _logger.LogInfo("Сохранение документа запущено");
             _uploadAction.Execute(_wrapper);
+                _logger.LogInfo("Сохранение документа проведено успешно");
+        }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex);
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void WordOfficeWrapperForm_FormClosed(object sender, FormClosedEventArgs e)

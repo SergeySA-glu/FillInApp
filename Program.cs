@@ -1,4 +1,5 @@
 ﻿using FillInApp.GUI;
+using FillInApp.Helpers;
 using System;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace FillInApp
         [STAThread]
         static void Main()
         {
+            LogHelper.CreateLogDb();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
