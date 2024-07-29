@@ -71,6 +71,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MailToForm";
             this.Text = "Получатель";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRename_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -21,7 +21,6 @@ namespace FillInApp.Actions
             var mailTo = string.Empty;
             using (var frmMailTo = new MailToForm())
             {
-                frmMailTo.ShowDialog();
                 if (frmMailTo.ShowDialog() != DialogResult.OK)
                     return;
 
