@@ -29,7 +29,7 @@ namespace FillInApp
         private void InitBookmarksTable()
         {
             var bookmarks = _wrapper.BookmarksNames.ToList();
-            bookmarks.Reverse();
+            bookmarks.Sort();
 
             bookmarksTable.Controls.Clear();
             bookmarksTable.RowCount = 0;
