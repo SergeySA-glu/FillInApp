@@ -8,6 +8,9 @@ namespace FillInApp.Helpers
 {
     public static class MailHelper
     {
+        /// <summary>
+        /// Отправка файла на указанную почту
+        /// </summary>
         public static async void Send(string mailTo, string attachment)
         {
             if (string.IsNullOrEmpty(mailTo) || string.IsNullOrEmpty(attachment))
@@ -28,6 +31,9 @@ namespace FillInApp.Helpers
             await smtp.SendMailAsync(message);
         }
 
+        /// <summary>
+        /// Проверка указанной почты на соответстие стандартной маске электронных почт
+        /// </summary>
         public static bool MailToValidate(string mailTo)
         {
             if (string.IsNullOrWhiteSpace(mailTo) || !Regex.IsMatch(mailTo, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))

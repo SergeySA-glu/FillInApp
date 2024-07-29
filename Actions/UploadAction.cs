@@ -6,6 +6,9 @@ using System.IO;
 
 namespace FillInApp.Actions
 {
+    /// <summary>
+    /// Сохранение заполненного документа на диск
+    /// </summary>
     public class UploadAction : IUserAction
     {
         public void Execute(IOfficeWrapper wrapper)
@@ -16,10 +19,12 @@ namespace FillInApp.Actions
             var filePath = string.Empty;
             try
             {
+                // создание документа
                 filePath = FileHelper.GetDocumentFilePath(wrapper);
                 if (filePath == null)
                     return;
 
+                // открытие документа для изменения
                 var doc = WordOfficeHelper.Application.Documents.Add(wrapper.PatternFilePath);
 
                 foreach (Bookmark bookmark in doc.Bookmarks)
@@ -28,6 +33,7 @@ namespace FillInApp.Actions
                         bookmark.Range.Text = newText;
                 }
 
+                // сохранение и закрытие документа
                 doc.SaveAs2(FileName: filePath);
                 doc.Close();
 

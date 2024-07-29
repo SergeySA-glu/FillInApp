@@ -27,6 +27,9 @@ namespace FillInApp.Logger
         }
     }
 
+    /// <summary>
+    /// Критичность лога
+    /// </summary>
     public enum LogLevel
     {
         Info,

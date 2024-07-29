@@ -2,6 +2,9 @@
 
 namespace FillInApp.Logger
 {
+    /// <summary>
+    /// Вспомогательный класс для получения логгера
+    /// </summary>
     public static class LogManager
     {
         private static ILogger _logger;

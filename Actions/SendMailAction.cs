@@ -22,6 +22,7 @@ namespace FillInApp.Actions
                 return;
             }
 
+            // указание почты получателя
             var mailTo = string.Empty;
             using (var frmMailTo = new MailToForm())
             {
@@ -31,6 +32,7 @@ namespace FillInApp.Actions
                 mailTo = frmMailTo.GetMailTo();
             }
 
+            // отправка
             MailHelper.Send(mailTo, wrapper.DocumentFilePath);
             MessageBox.Show("Письмо было отправлено");
         }

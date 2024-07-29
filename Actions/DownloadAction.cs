@@ -16,7 +16,7 @@ namespace FillInApp.Actions
             if (wrapper == null)
                 throw new ArgumentNullException(nameof(wrapper));
 
-            // выбор файла
+            // выбор файла шаблона
             var filePath = FileHelper.GetPatternFilePath();
             if (filePath == null)
                 return;
@@ -26,6 +26,7 @@ namespace FillInApp.Actions
             var bookMarkNames = new HashSet<string>();
             var defaultChanges = new Dictionary<string, string>();
 
+            // чтение закладок (полей для заполнения)
             foreach (Word.Bookmark bookMark in doc.Bookmarks)
             {
                 bookMarkNames.Add(bookMark.Name);
@@ -33,6 +34,7 @@ namespace FillInApp.Actions
             }
             doc.Close();
 
+            // передача данных в оболочку
             wrapper.BookmarksNames = bookMarkNames;
             wrapper.Changes = defaultChanges;
             wrapper.PatternFilePath = filePath;

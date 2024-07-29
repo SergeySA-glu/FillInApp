@@ -26,6 +26,9 @@ namespace FillInApp
             _sendMailAction = new SendMailAction();
         }
 
+        /// <summary>
+        /// Обновление таблицы заполняемых полей
+        /// </summary>
         private void InitBookmarksTable()
         {
             var bookmarks = _wrapper.BookmarksNames.ToList();
@@ -53,6 +56,9 @@ namespace FillInApp
             }
         }
 
+        /// <summary>
+        /// Загрузка шаблона в программу
+        /// </summary>
         private void DownloadButton_Click(object sender, EventArgs e)
         {
             try
@@ -70,6 +76,9 @@ namespace FillInApp
             }
         }
 
+        /// <summary>
+        /// Отправка на почту заполненного документа
+        /// </summary>
         private void SendMailButton_Click(object sender, EventArgs e)
         {
             try
@@ -85,6 +94,9 @@ namespace FillInApp
             }
         }
 
+        /// <summary>
+        /// Сохранение заполненного документа на диск
+        /// </summary>
         private void UploadButton_Click(object sender, EventArgs e)
         {
             try

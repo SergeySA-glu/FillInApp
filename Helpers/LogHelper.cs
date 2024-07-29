@@ -5,11 +5,17 @@ using System.IO;
 
 namespace FillInApp.Helpers
 {
+    /// <summary>
+    /// Вспомогательный класс для логирования
+    /// </summary>
     public static class LogHelper
     {
         private static string DbPath => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logBase.db");
         private static string ConnectionString => $"Data Source={DbPath};Version=3;";
 
+        /// <summary>
+        /// Создание базы данных под запись логов
+        /// </summary>
         public static void CreateLogDb()
         {
             if (!File.Exists(DbPath))
@@ -36,6 +42,9 @@ namespace FillInApp.Helpers
             }
         }
 
+        /// <summary>
+        /// Запись лога в базу данных
+        /// </summary>
         public static void InsertLog(string message, LogLevel logLevel)
         {
             using (SQLiteConnection conn = new SQLiteConnection(ConnectionString))

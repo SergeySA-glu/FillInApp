@@ -7,6 +7,9 @@ namespace FillInApp.Helpers
 {
     public static class FileHelper
     {
+        /// <summary>
+        /// Выбор шаблона документа с диска
+        /// </summary>
         public static string GetPatternFilePath()
         {
             using (var fileDialog = new OpenFileDialog())
@@ -21,6 +24,10 @@ namespace FillInApp.Helpers
             }
         }
 
+        /// <summary>
+        /// Создание файла документа для заполнения
+        /// </summary>
+        /// <param name="wrapper"></param>
         public static string GetDocumentFilePath(IOfficeWrapper wrapper)
         {
             if (wrapper == null)
