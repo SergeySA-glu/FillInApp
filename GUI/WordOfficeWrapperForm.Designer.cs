@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WordOfficeWrapperForm));
             this.buttonPanel = new System.Windows.Forms.Panel();
             this.uploadButton = new System.Windows.Forms.Button();
             this.SendMailButton = new System.Windows.Forms.Button();
@@ -97,6 +98,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.bookmarksTable);
             this.Controls.Add(this.buttonPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(500, 150);
             this.Name = "WordOfficeWrapperForm";
             this.Text = "Заполнение Word шаблона";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MailToForm));
             this.textMailTo = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.buttonOk = new System.Windows.Forms.Button();
@@ -69,6 +70,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.textMailTo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MailToForm";
             this.Text = "Получатель";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRename_FormClosing);
