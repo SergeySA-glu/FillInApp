@@ -1,6 +1,7 @@
 ﻿using FillInApp.Helpers;
 using FillInApp.Interfaces;
 using Microsoft.Office.Interop.Word;
+using System;
 using System.IO;
 
 namespace FillInApp.Actions
@@ -9,6 +10,9 @@ namespace FillInApp.Actions
     {
         public void Execute(IOfficeWrapper wrapper)
         {
+            if (wrapper == null)
+                throw new ArgumentNullException(nameof(wrapper));
+
             var filePath = string.Empty;
             try
             {

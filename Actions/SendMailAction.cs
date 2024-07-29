@@ -1,6 +1,7 @@
 ﻿using FillInApp.GUI;
 using FillInApp.Helpers;
 using FillInApp.Interfaces;
+using System;
 using System.Windows.Forms;
 
 namespace FillInApp.Actions
@@ -12,6 +13,9 @@ namespace FillInApp.Actions
     {
         public void Execute(IOfficeWrapper wrapper)
         {
+            if (wrapper == null)
+                throw new ArgumentNullException(nameof(wrapper));
+
             if (string.IsNullOrEmpty(wrapper.DocumentFilePath))
             {
                 MessageBox.Show("Сперва сохраните документ");

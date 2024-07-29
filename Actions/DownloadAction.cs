@@ -1,5 +1,6 @@
 ﻿using FillInApp.Helpers;
 using FillInApp.Interfaces;
+using System;
 using System.Collections.Generic;
 using Word = Microsoft.Office.Interop.Word;
 
@@ -12,6 +13,9 @@ namespace FillInApp.Actions
     {
         public void Execute(IOfficeWrapper wrapper)
         {
+            if (wrapper == null)
+                throw new ArgumentNullException(nameof(wrapper));
+
             // выбор файла
             var filePath = FileHelper.GetPatternFilePath();
             if (filePath == null)

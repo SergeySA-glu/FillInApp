@@ -58,9 +58,9 @@ namespace FillInApp
             try
             {
                 _logger.LogInfo("Загрузка документа запущена");
-            _downloadAction.Execute(_wrapper);
+                _downloadAction.Execute(_wrapper);
                 _logger.LogInfo("Обновление формы");
-            InitBookmarksTable();
+                InitBookmarksTable();
                 _logger.LogInfo("Загрузка документа проведена успешно");
             }
             catch (Exception ex)
@@ -75,9 +75,9 @@ namespace FillInApp
             try
             {
                 _logger.LogInfo("Отправка на почту запущена");
-            _sendMailAction.Execute(_wrapper);
+                _sendMailAction.Execute(_wrapper);
                 _logger.LogInfo("Отправка на почту проведена успешно");
-        }
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex);
@@ -90,9 +90,9 @@ namespace FillInApp
             try
             {
                 _logger.LogInfo("Сохранение документа запущено");
-            _uploadAction.Execute(_wrapper);
+                _uploadAction.Execute(_wrapper);
                 _logger.LogInfo("Сохранение документа проведено успешно");
-        }
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex);
@@ -113,7 +113,7 @@ namespace FillInApp
 
         private void BookmarksTable_ControlRemoved(object sender, ControlEventArgs e)
         {
-            e.Control.Dispose();
+            e.Control?.Dispose();
         }
     }
 }

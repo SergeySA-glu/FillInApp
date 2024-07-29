@@ -1,4 +1,5 @@
 ﻿using FillInApp.Interfaces;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -22,6 +23,9 @@ namespace FillInApp.Helpers
 
         public static string GetDocumentFilePath(IOfficeWrapper wrapper)
         {
+            if (wrapper == null)
+                throw new ArgumentNullException(nameof(wrapper));
+
             var filter = string.Empty;
             var exts = wrapper.Extensions;
             for (var i = 0; i < exts.Length; i++)

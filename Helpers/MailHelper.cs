@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -9,6 +10,9 @@ namespace FillInApp.Helpers
     {
         public static async void Send(string mailTo, string attachment)
         {
+            if (string.IsNullOrEmpty(mailTo) || string.IsNullOrEmpty(attachment))
+                throw new ArgumentException("Адрес получателя либо вложение невалидны");
+
             var from = new MailAddress("totoroanigiri@yandex.ru", "FillInApp");
             var to = new MailAddress(mailTo);
 
